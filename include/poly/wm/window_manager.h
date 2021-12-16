@@ -9,8 +9,9 @@
 #ifndef POLY_INCLUDE_POLY_WM_WINDOW_MANAGER_H_
 #define POLY_INCLUDE_POLY_WM_WINDOW_MANAGER_H_
 
-namespace poly {
-namespace wm {
+#include <vector>
+
+namespace poly::wm {
 
 class Window;
 
@@ -18,17 +19,17 @@ class WindowManager {
  public:
   Window *CreateWindow() noexcept;
 
-  [[nodiscard]] static WindowManager *GetWindowManager()
-  noexcept {
+  [[nodiscard]] static WindowManager *GetWindowManager() noexcept {
     static WindowManager window_manager;
 
     return &window_manager;
   }
  private:
   WindowManager() = default;
+
+  std::vector<Window> m_windows_;
 };
 
-} //wm
-} //poly
+} //poly::wm
 
 #endif //POLY_INCLUDE_POLY_WM_WINDOW_MANAGER_H_
